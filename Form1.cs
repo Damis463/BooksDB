@@ -14,6 +14,8 @@ namespace BooksDB
     public partial class frmtitles : Form
     {
         OleDbConnection conn;
+        OleDbCommand titlesCommand;
+        OleDbDataAdapter titlesAdapter;
         public frmtitles()
         {
             InitializeComponent();
@@ -26,7 +28,12 @@ namespace BooksDB
 
             conn = new OleDbConnection(connString);
             conn.Open();
-            txtConn.Text = conn.State.ToString();
+            titlesCommand = new OleDbCommand("Select * from Titles", conn);
+            titlesAdapter = new OleDbDataAdapter();
+            titlesAdapter.SelectCommand = titlesCommand;
+            conn.Close();
+            conn.Dispose();
+            titlesAdapter.Dispose();
 
         }
     }

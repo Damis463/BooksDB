@@ -29,33 +29,21 @@ namespace BooksDB
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtConn = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // txtConn
-            // 
-            this.txtConn.Location = new System.Drawing.Point(96, 371);
-            this.txtConn.Name = "txtConn";
-            this.txtConn.Size = new System.Drawing.Size(276, 20);
-            this.txtConn.TabIndex = 0;
-            // 
-            // Form1
+            // frmtitles
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.txtConn);
-            this.Name = "Form1";
+            this.Name = "frmtitles";
             this.Text = "Titles Database";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox txtConn;
     }
 }
 
