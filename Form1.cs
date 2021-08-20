@@ -16,6 +16,9 @@ namespace BooksDB
         OleDbConnection conn;
         OleDbCommand titlesCommand;
         OleDbDataAdapter titlesAdapter;
+        DataTable titlesTable;
+        CurrencyManager titlesManager;
+        
         public frmtitles()
         {
             InitializeComponent();
@@ -31,10 +34,46 @@ namespace BooksDB
             titlesCommand = new OleDbCommand("Select * from Titles", conn);
             titlesAdapter = new OleDbDataAdapter();
             titlesAdapter.SelectCommand = titlesCommand;
+            titlesTable = new DataTable();
+            titlesAdapter.Fill(titlesTable);
+
+            // bind controls
+
+            txtTitle.DataBindings.Add("Text",titlesTable,"Title");
+            txtYear.DataBindings.Add("Text", titlesTable, "Year_Published");
+            txtISBN.DataBindings.Add("Text", titlesTable, "ISBN");
+            txtPubID.DataBindings.Add("Text", titlesTable, "PubID");
+
+
+            //establish currency manager
+            titlesManager = (CurrencyManager)BindingContext[titlesTable];
+
             conn.Close();
             conn.Dispose();
             titlesAdapter.Dispose();
+            titlesTable.Dispose();
 
+        }
+
+        private void btnFirst_Click(object sender, EventArgs e)
+        {
+
+            titlesManager.Position = 0;
+        }
+
+        private void btnPrevious_Click(object sender, EventArgs e)
+        {
+            titlesManager.Position--;
+        }
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            titlesManager.Position++;
+        }
+
+        private void btnLast_Click(object sender, EventArgs e)
+        {
+            titlesManager.Position = titlesManager.Count - 1;
         }
     }
 }
