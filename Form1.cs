@@ -18,7 +18,7 @@ namespace BooksDB
         OleDbDataAdapter titlesAdapter;
         DataTable titlesTable;
         CurrencyManager titlesManager;
-        
+
         public frmtitles()
         {
             InitializeComponent();
@@ -39,7 +39,7 @@ namespace BooksDB
 
             // bind controls
 
-            txtTitle.DataBindings.Add("Text",titlesTable,"Title");
+            txtTitle.DataBindings.Add("Text", titlesTable, "Title");
             txtYear.DataBindings.Add("Text", titlesTable, "Year_Published");
             txtISBN.DataBindings.Add("Text", titlesTable, "ISBN");
             txtPubID.DataBindings.Add("Text", titlesTable, "PubID");
